@@ -1,0 +1,8 @@
+.app{
+    height: 100vh;
+    overflow: hidden;
+    background-color: #444;
+    color: white;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+}
