@@ -4,6 +4,7 @@ function createLayer() {
     return {
         id: uuid(),
         blendMode: 'BLEND',
+        opacity: 100,
         steps: [],
         addStep(layerConfig) {
             this.prevsteps = [...this.steps];

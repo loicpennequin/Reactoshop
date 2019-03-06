@@ -1,6 +1,10 @@
 const sketch = (wrapperWidth, wrapperHeight) => p => {
     let _imageLoaded = false;
     let _image;
+    let _currentLayer;
+
+    const getOpacity = opacity => (opacity * _currentLayer.opacity) / 100;
+
     p.setup = function() {
         p.createCanvas(wrapperWidth, wrapperHeight);
         p.frameRate(1);
@@ -26,6 +30,7 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
 
     function renderLayer(layer) {
         p.blendMode(p[layer.blendMode]);
+        _currentLayer = layer;
         layer.steps.forEach(step => {
             switch (step.type) {
                 case 'FILL':
@@ -38,7 +43,7 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
     }
 
     function renderFill({ red, green, blue, alpha }) {
-        p.fill(red, green, blue, alpha);
+        p.fill(red, green, blue, getOpacity(alpha));
         p.noStroke();
         p.translate(0, 0);
         p.rect(0, 0, p.width, p.height);
