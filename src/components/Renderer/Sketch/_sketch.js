@@ -25,6 +25,7 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
     };
 
     function renderLayer(layer) {
+        p.blendMode(p[layer.blendMode]);
         layer.steps.forEach(step => {
             switch (step.type) {
                 case 'FILL':

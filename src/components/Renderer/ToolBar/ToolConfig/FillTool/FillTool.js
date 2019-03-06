@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import { useStore } from './../../../../../store';
 
-const FillToll = ({ handleSubmit, handleChange, values }) => {
+const FillTool = ({ handleSubmit, handleChange, values }) => {
     const { state, actions } = useStore();
     const onSubmit = e => {
         handleSubmit(e);
@@ -73,4 +73,4 @@ export default withFormik({
         alpha: 100
     }),
     handleSubmit: values => {}
-})(FillToll);
+})(FillTool);

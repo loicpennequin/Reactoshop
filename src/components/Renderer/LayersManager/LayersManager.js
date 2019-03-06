@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from './../../../store';
 import LayerInfo from './LayerInfo';
-
+import LayerConfig from './LayerConfig';
 const LayersManager = () => {
     const { state, actions } = useStore();
     const createLayer = () => {
@@ -10,9 +10,12 @@ const LayersManager = () => {
 
     return (
         <>
-            {state.layers.map(layer => (
-                <LayerInfo key={layer.id} layer={layer} />
-            ))}
+            {state.selectedLayer !== -1 && <LayerConfig />}
+            <div>
+                {state.layers.map(layer => (
+                    <LayerInfo key={layer.id} layer={layer} />
+                ))}
+            </div>
             <button onClick={createLayer}>New Layer</button>
         </>
     );
