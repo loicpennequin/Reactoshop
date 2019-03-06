@@ -1,24 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useStore } from './../../store';
 import Sketch from './Sketch';
+import LayersManager from './LayersManager';
+import ToolBar from './ToolBar';
 
-const Renderer = ({setFieldValue}) => {
-    const { state, actions } = useStore();
+import css from './style.module.scss';
 
-    useEffect(() => {
-        if (state.isFileOpen){
-            actions.updateCanvas();
-        }
-    }, [state.isFileOpen]);
+const Renderer = () => {
+    const { state } = useStore();
 
     return (
-        <div>
-            {state.isFileOpen
-                ? <Sketch/>
-                : <p>Please open a file</p>
-            }
+        <div className={css.rendererWrapper}>
+            {!state.isFileOpen ? (
+                <div className={css.noFile}>
+                    <p>Please open a file</p>
+                </div>
+            ) : (
+                <>
+                    <div className={css.layersManagerWrapper}>
+                        <LayersManager />
+                    </div>
+                    <div className={css.toolBarWrapper}>
+                        <ToolBar />
+                    </div>
+                    <Sketch />
+                </>
+            )}
         </div>
-    )
+    );
 };
 
-export default Renderer
+export default Renderer;

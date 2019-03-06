@@ -1,0 +1,35 @@
+.rendererWrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
+.layersManagerWrapper {
+    position: absolute;
+    width: 300px;
+    min-height: 300px;
+    right: 50px;
+    top: 33%;
+    background-color: #ddd;
+    color: #222;
+}
+
+.toolBarWrapper {
+    position: absolute;
+    width: 300px;
+    min-height: 580px;
+    left: 50px;
+    top: 15%;
+    background-color: #ddd;
+    color: #222;
+}
+
+.test {
+    color: red;
+}
+
+.noFile {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,30 +1,36 @@
 import React, { useRef, useState, useEffect } from 'react';
 import p5 from 'p5';
-import sketch from './p5Sketch.js';
-import useSketch from './useSketch.js';
+import sketch from './_sketch.js';
 import { useStore } from './../../../store';
+import css from './style.module.scss';
 
 const Sketch = () => {
-    const wrapper =  useRef(null);
+    const wrapper = useRef(null);
     const [canvas, setCanvas] = useState(null);
-    const p5Sketch = useSketch(sketch)
-    const {state, actions} = useStore();
+    const { state, actions } = useStore();
 
     useEffect(() => {
-        setCanvas(new p5(p5Sketch, wrapper.current));
-
-        return () => {
-            canvas.remove();
-            setCanvas(null);
-        }
+        const w = wrapper.current;
+        setCanvas(new p5(sketch(w.offsetWidth, w.offsetHeight), w));
+        actions.updateCanvas();
     }, []);
 
-    return (
-        <>
-            <button onClick={() => actions.changeColor()}>change color (current: ({state.color}))</button>
-            <div ref={wrapper}></div>
-        </>
+    useEffect(
+        () => {
+            if (canvas) {
+                canvas.props = state;
+                canvas.actions = actions;
+                canvas.render();
+            }
+        },
+        [state.lastUpdate]
     );
-}
+
+    return (
+        <div className={css.sketchContainer}>
+            <div ref={wrapper} />
+        </div>
+    );
+};
 
 export default Sketch;

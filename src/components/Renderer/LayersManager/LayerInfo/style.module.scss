@@ -1,0 +1,9 @@
+.wrapper {
+    font-size: 0.9rem;
+    border-bottom: solid 1px black;
+    padding: 0.5em;
+    &.selected {
+        background-color: hsla(212, 22%, 45%, 1);
+        color: white;
+    }
+}

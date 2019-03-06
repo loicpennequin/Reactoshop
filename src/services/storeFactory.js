@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 
-function createStore(initialState, reducer){
+function createStore(initialState, reducer) {
     const [state, dispatch] = useReducer(reducer, initialState);
     return [state, dispatch];
 }

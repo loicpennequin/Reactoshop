@@ -1,27 +1,16 @@
 const canvasReducer = {
-    initialState : {
-        canvasUpdating: false,
-        color: 255
+    initialState: {
+        lastUpdate: new Date().getTime()
     },
-    reducer(state, {type, payload}) {
+    reducer(state, { type, payload }) {
         switch (type) {
-            case 'UPDATE_CANVAS_START':
+            case 'UPDATE_CANVAS':
                 return {
                     ...state,
-                    canvasUpdating: true
+                    lastUpdate: new Date().getTime()
                 };
-            case 'UPDATE_CANVAS_END':
-                return {
-                    ...state,
-                    canvasUpdating: false,
-                };
-            case 'CHANGE_COLOR':
-                return {
-                    ...state,
-                    color: state.color === 255 ? '0' : 255
-                }
             default:
-                return state
+                return state;
         }
     }
 };
