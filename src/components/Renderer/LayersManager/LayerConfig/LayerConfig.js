@@ -8,14 +8,9 @@ const LayerConfig = ({ handleSubmit }) => {
         layer => layer.id === state.selectedLayer
     );
 
-    const onBlendModeChange = e => {
-        activeLayer.blendMode = e.target.value;
-        actions.updateCanvas();
-    };
-
-    const onOpacityChange = e => {
-        activeLayer.opacity = e.target.value;
-        actions.updateCanvas();
+    const handleChange = e => {
+        activeLayer.update({ [e.target.name]: e.target.value });
+        // actions.updateCanvas();
     };
 
     return (
@@ -27,15 +22,17 @@ const LayerConfig = ({ handleSubmit }) => {
                     min="0"
                     max="100"
                     step="1"
-                    onChange={onOpacityChange}
+                    onChange={handleChange}
+                    name="opacity"
                     value={activeLayer.opacity}
                 />
             </div>
             <div>
                 <label>Blend Mode</label>
                 <select
-                    onChange={onBlendModeChange}
+                    onChange={handleChange}
                     value={activeLayer.blendMode}
+                    name="blendMode"
                 >
                     {blendModes.map(b => (
                         <option key={b.value} value={b.value}>

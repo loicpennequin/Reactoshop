@@ -14,14 +14,10 @@ const FillTool = ({ handleSubmit, handleChange, values }) => {
             ...values,
             type: 'FILL'
         });
-        actions.updateCanvas();
     };
     return (
         <form onSubmit={e => onSubmit(e)} style={{ backgroundColor: 'white' }}>
-            <ColorPicker
-                onChange={handleChange}
-                values={values}
-            />
+            <ColorPicker onChange={handleChange} values={values} />
             <br />
             <input type="submit" />
         </form>

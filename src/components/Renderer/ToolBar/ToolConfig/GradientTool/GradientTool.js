@@ -14,23 +14,26 @@ const GradientTool = ({ handleSubmit, handleChange, values }) => {
             ...values,
             type: 'GRADIENT'
         });
-        actions.updateCanvas();
     };
     return (
         <form onSubmit={e => onSubmit(e)} style={{ backgroundColor: 'white' }}>
             <label>Direction</label>
-            <br/>
-            <select value={values.direction} onChange={handleChange} name="direction">
+            <br />
+            <select
+                value={values.direction}
+                onChange={handleChange}
+                name="direction"
+            >
                 <option value="VERTICAL">Vertical</option>
                 <option value="HORIZONTAL">Horizontal</option>
                 <option value="DIAGONAL">Diagonal</option>
                 <option value="CUSTOM">Custom Angle</option>
             </select>
-            <br/>
+            <br />
             {values.direction === 'CUSTOM' && (
                 <>
-                    <label style={{fontWeight: 'bold'}}>Angle</label>
-                    <br/>
+                    <label style={{ fontWeight: 'bold' }}>Angle</label>
+                    <br />
                     <input
                         type="range"
                         min="0"
@@ -39,24 +42,35 @@ const GradientTool = ({ handleSubmit, handleChange, values }) => {
                         name="angle"
                         value={values.angle}
                         onChange={handleChange}
-                    />{values.angle + '°'}
-                    <br/>
+                    />
+                    {values.angle + '°'}
+                    <br />
                 </>
             )}
-            <label style={{fontWeight: 'bold'}}>From</label>
+            <label style={{ fontWeight: 'bold' }}>From</label>
             <br />
             <ColorPicker
                 onChange={handleChange}
                 values={values.from}
-                names={{red: 'from.red', green: 'from.green', blue: 'from.blue', alpha: 'from.alpha'}}
+                names={{
+                    red: 'from.red',
+                    green: 'from.green',
+                    blue: 'from.blue',
+                    alpha: 'from.alpha'
+                }}
             />
             <br />
-            <label style={{fontWeight: 'bold'}}>To</label>
+            <label style={{ fontWeight: 'bold' }}>To</label>
             <br />
             <ColorPicker
                 onChange={handleChange}
                 values={values.to}
-                names={{red: 'to.red', green: 'to.green', blue: 'to.blue', alpha: 'to.alpha'}}
+                names={{
+                    red: 'to.red',
+                    green: 'to.green',
+                    blue: 'to.blue',
+                    alpha: 'to.alpha'
+                }}
             />
             <br />
             <input type="submit" />
@@ -65,13 +79,13 @@ const GradientTool = ({ handleSubmit, handleChange, values }) => {
 };
 export default withFormik({
     mapPropsToValues: () => ({
-        from : {
+        from: {
             red: 255,
             green: 0,
             blue: 0,
             alpha: 100
         },
-        to :{
+        to: {
             red: 0,
             green: 0,
             blue: 255,

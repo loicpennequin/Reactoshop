@@ -5,7 +5,9 @@ import LayerConfig from './LayerConfig';
 const LayersManager = () => {
     const { state, actions } = useStore();
     const createLayer = () => {
-        actions.addLayer();
+        actions.addLayer({
+            onUpdate: actions.updateCanvas
+        });
     };
 
     return (

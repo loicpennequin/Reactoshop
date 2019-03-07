@@ -1,5 +1,5 @@
 import imageService from './../../../services/imageService.js';
-import p5 from 'p5';
+
 const sketch = (wrapperWidth, wrapperHeight) => p => {
     let _imageLoaded = false;
     let _image;
@@ -87,13 +87,13 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
         p.rect(0, 0, p.width, p.height);
     }
 
-    function renderGradient(step){
+    function renderGradient(step) {
         p.colorMode(p.RGB, 255, 255, 255, 100);
         const startColor = p.color(Object.values(step.from));
         const endColor = p.color(Object.values(step.to));
-        if (step.direction === 'VERTICAL'){
-            for (let y = 0 ; y <= p.height ; y++){
-                const inter = p.map(y, 0,  p.height, 0, 1);
+        if (step.direction === 'VERTICAL') {
+            for (let y = 0; y <= p.height; y++) {
+                const inter = p.map(y, 0, p.height, 0, 1);
                 const c = p.lerpColor(startColor, endColor, inter);
                 p.noFill();
                 p.stroke(
@@ -105,9 +105,9 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
                 p.strokeWeight(1);
                 p.line(0, y, p.width, y);
             }
-        } else if (step.direction === 'HORIZONTAL'){
-            for (let x = 0 ; x <= p.width ; x++){
-                const inter = p.map(x, 0,  p.width, 0, 1);
+        } else if (step.direction === 'HORIZONTAL') {
+            for (let x = 0; x <= p.width; x++) {
+                const inter = p.map(x, 0, p.width, 0, 1);
                 const c = p.lerpColor(startColor, endColor, inter);
                 p.noFill();
                 p.stroke(
@@ -119,11 +119,11 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
                 p.strokeWeight(1);
                 p.line(x, 0, x, p.height);
             }
-        } else if (step.direction === 'DIAGONAL'){
+        } else if (step.direction === 'DIAGONAL') {
             const axis = p.width > p.height ? p.width : p.height;
             const diagonal = p.createVector(p.width, p.height);
-            for (let y = -axis ; y <= axis ; y++){
-                const inter = p.map(y, -axis,  axis, 0, 1);
+            for (let y = -axis; y <= axis; y++) {
+                const inter = p.map(y, -axis, axis, 0, 1);
                 const c = p.lerpColor(startColor, endColor, inter);
                 p.noFill();
                 p.stroke(
@@ -133,18 +133,18 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
                     getOpacity(p.alpha(c))
                 );
                 p.strokeWeight(2);
-                p.line(0,y,diagonal.x, y + diagonal.y);
+                p.line(0, y, diagonal.x, y + diagonal.y);
             }
-        } else if (step.direction === 'CUSTOM'){
+        } else if (step.direction === 'CUSTOM') {
             const angle = p.radians(step.angle);
             const diagonal = p.createVector(p.width, p.height).mag();
             p.push();
-            p.translate(p.width/2, p.height/2);
+            p.translate(p.width / 2, p.height / 2);
             p.rotate(angle);
-            p.translate(-p.width /2, 0);
+            p.translate(-p.width / 2, 0);
             p.stroke(0);
-            for(let i = p.width - diagonal; i <= diagonal; i++){
-                const inter = p.map(i, 0 , p.width, 0, 1);
+            for (let i = p.width - diagonal; i <= diagonal; i++) {
+                const inter = p.map(i, 0, p.width, 0, 1);
                 const c = p.lerpColor(startColor, endColor, inter);
                 p.noFill();
                 p.stroke(
