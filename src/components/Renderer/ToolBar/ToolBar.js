@@ -1,7 +1,7 @@
 import React from 'react';
 import ToolConfig from './ToolConfig';
 import ToolsList from './ToolsList';
-import ImageSettings from './ImageSettings';
+// import ImageSettings from './ImageSettings';
 import { useStore } from './../../../store';
 
 const ToolBar = () => {
@@ -9,7 +9,7 @@ const ToolBar = () => {
 
     return (
         <div>
-            <ImageSettings />
+            {/* <ImageSettings /> */}
             <ToolsList />
             {state.showToolbarConfig && <ToolConfig />}
         </div>

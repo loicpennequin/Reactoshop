@@ -1,6 +1,7 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import { useStore } from './../../../../../store';
+import ColorPicker from './../../../../UI/ColorPicker';
 
 const FillTool = ({ handleSubmit, handleChange, values }) => {
     const { state, actions } = useStore();
@@ -17,48 +18,9 @@ const FillTool = ({ handleSubmit, handleChange, values }) => {
     };
     return (
         <form onSubmit={e => onSubmit(e)} style={{ backgroundColor: 'white' }}>
-            <label>Red</label>
-            <input
-                type="range"
-                name="red"
-                min="0"
-                max="255"
-                step="1"
-                value={values.red}
+            <ColorPicker
                 onChange={handleChange}
-            />
-            <br />
-            <label>Green</label>
-            <input
-                type="range"
-                name="green"
-                min="0"
-                max="255"
-                step="1"
-                value={values.green}
-                onChange={handleChange}
-            />
-            <br />
-            <label>Blue</label>
-            <input
-                type="range"
-                name="blue"
-                min="0"
-                max="255"
-                step="1"
-                value={values.blue}
-                onChange={handleChange}
-            />
-            <br />
-            <label>Alpha</label>
-            <input
-                type="range"
-                name="alpha"
-                min="0"
-                max="100"
-                step="1"
-                value={values.alpha}
-                onChange={handleChange}
+                values={values}
             />
             <br />
             <input type="submit" />

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useStore } from './../../../../store';
 import FillTool from './FillTool';
+import GradientTool from './GradientTool';
 
 const ToolConfig = () => {
     const { state, actions } = useStore();
 
     const toolsMap = {
         fill: FillTool,
-        gradient: () => <p>Soon..</p>
+        gradient: GradientTool
     };
 
     const Component = toolsMap[state.openedTool];
