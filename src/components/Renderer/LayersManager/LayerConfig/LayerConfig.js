@@ -20,23 +20,30 @@ const LayerConfig = ({ handleSubmit }) => {
 
     return (
         <div>
-            <label>Opacity</label>
-            <input
-                type="range"
-                min="0"
-                max="100"
-                step="1"
-                onChange={onOpacityChange}
-                value={activeLayer.opacity}
-            />
-            <label>Blend Mode</label>
-            <select onChange={onBlendModeChange} value={activeLayer.blendMode}>
-                {blendModes.map(b => (
-                    <option key={b.value} value={b.value}>
-                        {b.label}
-                    </option>
-                ))}
-            </select>
+            <div>
+                <label>Opacity</label>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    onChange={onOpacityChange}
+                    value={activeLayer.opacity}
+                />
+            </div>
+            <div>
+                <label>Blend Mode</label>
+                <select
+                    onChange={onBlendModeChange}
+                    value={activeLayer.blendMode}
+                >
+                    {blendModes.map(b => (
+                        <option key={b.value} value={b.value}>
+                            {b.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
     );
 };
