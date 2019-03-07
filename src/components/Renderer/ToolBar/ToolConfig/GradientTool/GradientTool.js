@@ -23,8 +23,26 @@ const GradientTool = ({ handleSubmit, handleChange, values }) => {
             <select value={values.direction} onChange={handleChange} name="direction">
                 <option value="VERTICAL">Vertical</option>
                 <option value="HORIZONTAL">Horizontal</option>
+                <option value="DIAGONAL">Diagonal</option>
+                <option value="CUSTOM">Custom Angle</option>
             </select>
             <br/>
+            {values.direction === 'CUSTOM' && (
+                <>
+                    <label style={{fontWeight: 'bold'}}>Angle</label>
+                    <br/>
+                    <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        step="1"
+                        name="angle"
+                        value={values.angle}
+                        onChange={handleChange}
+                    />{values.angle + '°'}
+                    <br/>
+                </>
+            )}
             <label style={{fontWeight: 'bold'}}>From</label>
             <br />
             <ColorPicker
@@ -59,7 +77,8 @@ export default withFormik({
             blue: 255,
             alpha: 100
         },
-        direction: 'VERTICAL'
+        direction: 'VERTICAL',
+        angle: 0
     }),
     handleSubmit: values => {}
 })(GradientTool);
