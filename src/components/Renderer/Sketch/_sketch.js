@@ -1,13 +1,14 @@
 import imageService from './../../../services/imageService.js';
+import fileSaver from './../../../services/fileSaver.js';
+import uuid from 'uuid';
 
 const sketch = (wrapperWidth, wrapperHeight) => p => {
     let _imageLoaded = false;
     let _image;
-    let _currentLayer;
     let _currentSettings;
-
-    const getOpacity = opacity => (opacity * _currentLayer.opacity) / 100;
-
+    fileSaver.setSave(() => {
+        p.saveCanvas(uuid(), 'png');
+    });
     p.setup = function() {
         p.createCanvas(wrapperWidth, wrapperHeight);
         p.frameRate(1);
@@ -124,7 +125,7 @@ const sketch = (wrapperWidth, wrapperHeight) => p => {
                     renderer.red(c),
                     renderer.green(c),
                     renderer.blue(c),
-                    getOpacity(renderer.alpha(c))
+                    renderer.alpha(c)
                 );
                 renderer.strokeWeight(1);
                 renderer.line(x, 0, x, renderer.height);

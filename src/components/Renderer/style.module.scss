@@ -5,6 +5,7 @@
 
 .layersManagerWrapper {
     position: absolute;
+    z-index: 2;
     width: 250px;
     min-height: 300px;
     right: 50px;
@@ -15,6 +16,7 @@
 
 .toolBarWrapper {
     position: absolute;
+    z-index: 2;
     font-size: 0.8em;
     width: 250px;
     min-height: 580px;

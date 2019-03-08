@@ -6,6 +6,7 @@ import css from './style.module.scss';
 
 const Sketch = () => {
     const wrapper = useRef(null);
+    const [scale, setScale] = useState(1);
     const [canvas, setCanvas] = useState(null);
     const { state, actions } = useStore();
 
@@ -26,9 +27,15 @@ const Sketch = () => {
         [state.lastUpdated]
     );
 
+    const handleWheel = e => {
+        let newScale = scale + (e.deltaY > 0 ? 0.1 : -0.1);
+        if (newScale <= 0.1) newScale = 0.1;
+        setScale(newScale);
+    };
+
     return (
-        <div className={css.sketchContainer}>
-            <div ref={wrapper} />
+        <div className={css.sketchContainer} onWheel={handleWheel}>
+            <div ref={wrapper} style={{ transform: `scale(${scale})` }} />
         </div>
     );
 };
