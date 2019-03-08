@@ -23,7 +23,7 @@ const Sketch = () => {
                 canvas.render();
             }
         },
-        [state.lastUpdate]
+        [state.lastUpdated]
     );
 
     return (

@@ -7,18 +7,19 @@ function createLayer({ onUpdate }) {
         opacity: 100,
         steps: [],
         lastUpdated: new Date().getTime(),
+        getTimestamp() {
+            return new Date().getTime();
+        },
         addStep(layerConfig) {
             this.prevsteps = [...this.steps];
             this.steps = [...this.steps, layerConfig];
-            this.lastUpdated = new Date().getTime();
-            onUpdate();
+            this.lastUpdated = this.getTimestamp();
+            onUpdate(this.lastUpdated);
             return this;
         },
         update(newState) {
-            Object.assign(this, newState, {
-                lastUpdated: new Date().getTime()
-            });
-            onUpdate();
+            Object.assign(this, newState);
+            onUpdate(this.getTimestamp());
             return this;
         }
     };

@@ -4,7 +4,7 @@ import { useStore } from './../../../../../store';
 import ColorPicker from './../../../../UI/ColorPicker';
 
 const GradientTool = ({ handleSubmit, handleChange, values }) => {
-    const { state, actions } = useStore();
+    const { state } = useStore();
     const onSubmit = e => {
         handleSubmit(e);
         const activeLayer = state.layers.find(

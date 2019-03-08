@@ -1,6 +1,6 @@
 const canvasActions = dispatch => ({
-    updateCanvas: () => {
-        dispatch({ type: 'UPDATE_CANVAS' });
+    updateCanvas: timestamp => {
+        dispatch({ type: 'UPDATE_CANVAS', payload: { timestamp } });
     }
 });
 

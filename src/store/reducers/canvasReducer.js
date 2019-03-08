@@ -1,13 +1,13 @@
 const canvasReducer = {
     initialState: {
-        lastUpdate: new Date().getTime()
+        lastUpdated: new Date().getTime()
     },
     reducer(state, { type, payload }) {
         switch (type) {
             case 'UPDATE_CANVAS':
                 return {
                     ...state,
-                    lastUpdate: new Date().getTime()
+                    lastUpdated: payload.timestamp
                 };
             default:
                 return state;
